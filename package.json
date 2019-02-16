@@ -1,0 +1,16 @@
+{
+  "name": "periodic-table-sentence",
+  "version": "1.0.0",
+  "description": "- Periodic Element Table JSON file: [github.com/lbthomsen](https://github.com/lbthomsen/Periodic-Table-JSON/blob/master/PeriodicTableJSON.json) - Periodic Element Cards: [sciencenotes.org](https://sciencenotes.org/periodic-table-element-cells/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "images": "^3.0.2"
+  }
+}

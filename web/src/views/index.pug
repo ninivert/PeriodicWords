@@ -1,0 +1,37 @@
+html
+	head
+		title Words to Periodic Table
+		link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
+		link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flat-ui/2.3.0/css/flat-ui.min.css")
+		link(rel="stylesheet" href="/stylesheets/master.css")
+
+	body
+		header.jumbotron.jumbotron-fluid
+			.container
+				h1.display-4 Words to Periodic Table
+				p.lead Decompose any sentence into chemical elements : write something below and click the images to download!
+				.row
+					.col-lg-6
+						.input-group
+							.input-group-prepend
+								label.input-group-text(for="words_input") Words to decompose
+							input#words_input.form-control(type="text" value="rara rasputin")
+					.col-lg-6
+						.input-group
+							.input-group-prepend
+								label.input-group-text(for="tile_size_input") Tile size (
+									span#tile_size_value
+									| )
+							input#tile_size_input.form-control(type="range" min="20" max="300" step="10")
+
+		main.container
+			#output
+
+		footer
+			.container
+				p.lead Periodic table tiles from 
+					a(href="https://sciencenotes.org/periodic-table-element-cells/") sciencenotes.org
+				p.lead Made with ❤️ by 
+					a(href="https://nielsvadot.design/") Niels Vadot
+			
+		script(src="/scripts/index.js")

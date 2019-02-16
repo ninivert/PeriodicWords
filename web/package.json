@@ -1,0 +1,46 @@
+{
+    "author": "",
+    "dependencies": {},
+    "description": "",
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-preset-es2015": "^6.24.1",
+        "http-server": "^0.11.1",
+        "node-sass": "^4.9.2",
+        "npm-watch": "^0.3.0",
+        "pug": "^2.0.3",
+        "pug-cli": "^1.0.0-alpha6"
+    },
+    "license": "ISC",
+    "main": "index.js",
+    "name": "periodic-words",
+    "scripts": {
+        "babel": "babel src/scripts --out-dir ../docs/scripts --presets es2015 --source-maps",
+        "dev": "npm-watch",
+        "pug": "pug src/views --out ../docs",
+        "sass": "node-sass src/stylesheets -o ../docs/stylesheets",
+        "start": "http-server ../docs"
+    },
+    "version": "1.0.0",
+    "watch": {
+        "babel": {
+            "delay": 200,
+            "extensions": "js",
+            "patterns": "src/scripts",
+            "quiet": false
+        },
+        "pug": {
+            "delay": 200,
+            "extensions": "pug",
+            "patterns": "src/views",
+            "quiet": false
+        },
+        "sass": {
+            "delay": 200,
+            "extensions": "sass,scss",
+            "patterns": "src/stylesheets",
+            "quiet": false
+        }
+    }
+}
