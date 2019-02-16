@@ -15,6 +15,8 @@ var config = {
 	"words_input": document.getElementById("words_input"),
 	"tile_size_input": document.getElementById("tile_size_input"),
 	"tile_size_value": document.getElementById("tile_size_value"),
+	"loader": document.getElementById("loader"),
+	"progress": document.getElementById("progress"),
 	"output": document.getElementById("output")
 };
 
@@ -32,16 +34,20 @@ var symbols = table.map(function (entry) {
  */
 
 config.words_input.disabled = true;
+config.tile_size_input.disabled = true;
 config.tile_size_input.value = 150;
+config.progress.max = names.length;
 
 var preloadCount = 0;
 var images = names.map(function (name, i) {
 	var img = new Image();
-	img.src = "/assets/tiles/" + name + ".png";
+	img.src = "assets/tiles/" + name + ".png";
 	img.onload = function () {
 		++preloadCount;
+		config.progress.value = preloadCount;
 		if (preloadCount === names.length) {
 			logger("Preloaded " + names.length + " images");
+			config.loader.style.display = "none";
 			init();
 		}
 	};
@@ -55,6 +61,7 @@ var images = names.map(function (name, i) {
 
 function init() {
 	config.words_input.disabled = false;
+	config.tile_size_input.disabled = false;
 	config.tile_size_value.innerHTML = config.tile_size_input.value;
 
 	config.tile_size_input.oninput = function () {
