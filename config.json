@@ -1,7 +1,7 @@
 {
 	"output_dir": "outputs",
 	"tile_size": 300,
-	"words": ["ra", "ra", "rasputin"],
+	"words": ["rasputin"],
 	"words_file": "Words.txt",
 	"dict_file": "PeriodicTable.txt",
 	"use_words_file": true,

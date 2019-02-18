@@ -78,7 +78,6 @@ function doStuff() {
 
 	for (let string of strings) {
 		const decomps = decompose(string, symbols);
-
 		let start = Date.now();
 		let n = 0;
 
@@ -138,17 +137,20 @@ function getImageData(decompNames, spritePool, tileSize) {
  * Decomposer
  */
 
-// Wrapper for the recursive algorithm
+/**
+ * Wrapper for the recursive algorithm
+ */
+
 function decompose(string, symbols) {
-	let solutions = [];
-	decomposeR(string, symbols, solutions);
-	return solutions;
+	return decomposeR(string, symbols).filter(decomp => decomp.indexOf(false) === -1 && decomp.length !== 0);
 }
 
+/**
+ * Return a decomposition of string in array form
+ * If impossible, returns false
+ */
 
-// Return a decomposition of string in array form
-// If impossible, returns [false]
-function decomposeR(string, symbols, solutions) {
+function decomposeR(string, symbols) {
 	// Recursive stop
 	if (string === "") return [[]];
 
@@ -164,7 +166,7 @@ function decomposeR(string, symbols, solutions) {
 		// Found a potential element
 		if (elementIndex !== -1) {
 			found = true;
-			const _decomps = decomposeR(string.substr(i), symbols, solutions);
+			const _decomps = decomposeR(string.substr(i), symbols);
 
 			for (let _decomp of _decomps) {
 				if (_decomp === false) {
@@ -175,9 +177,9 @@ function decomposeR(string, symbols, solutions) {
 					// Add element to decomposition
 					_decomp.unshift(symbols[elementIndex]);
 					// Add decomposition to solutions if one
-					if (string === substr) {
-						solutions.push(_decomp);
-					}
+					// if (string === substr) {
+					// 	solutions.push(_decomp);
+					// }
 					// Add to decomposition
 					decomps.push(_decomp);
 				}

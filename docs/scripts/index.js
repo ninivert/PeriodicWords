@@ -93,7 +93,6 @@ function doStuff() {
 			var string = _step.value;
 
 			var decomps = decompose(string, symbols);
-
 			var start = Date.now();
 			var n = 0;
 
@@ -205,16 +204,22 @@ function getImageData(decompNames, spritePool, tileSize) {
  * Decomposer
  */
 
-// Wrapper for the recursive algorithm
+/**
+ * Wrapper for the recursive algorithm
+ */
+
 function decompose(string, symbols) {
-	var solutions = [];
-	decomposeR(string, symbols, solutions);
-	return solutions;
+	return decomposeR(string, symbols).filter(function (decomp) {
+		return decomp.indexOf(false) === -1 && decomp.length !== 0;
+	});
 }
 
-// Return a decomposition of string in array form
-// If impossible, returns [false]
-function decomposeR(string, symbols, solutions) {
+/**
+ * Return a decomposition of string in array form
+ * If impossible, returns false
+ */
+
+function decomposeR(string, symbols) {
 	// Recursive stop
 	if (string === "") return [[]];
 
@@ -230,7 +235,7 @@ function decomposeR(string, symbols, solutions) {
 		// Found a potential element
 		if (elementIndex !== -1) {
 			found = true;
-			var _decomps = decomposeR(string.substr(i), symbols, solutions);
+			var _decomps = decomposeR(string.substr(i), symbols);
 
 			var _iteratorNormalCompletion4 = true;
 			var _didIteratorError4 = false;
@@ -248,9 +253,9 @@ function decomposeR(string, symbols, solutions) {
 						// Add element to decomposition
 						_decomp.unshift(symbols[elementIndex]);
 						// Add decomposition to solutions if one
-						if (string === substr) {
-							solutions.push(_decomp);
-						}
+						// if (string === substr) {
+						// 	solutions.push(_decomp);
+						// }
 						// Add to decomposition
 						decomps.push(_decomp);
 					}
